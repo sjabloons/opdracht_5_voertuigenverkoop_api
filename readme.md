@@ -1,73 +1,44 @@
-# Node, Express and TypeScript Project Template
+Opdracht: Bouw een Voertuig Verkoop API
+Doel
+Bouw een RESTful API waarmee auto's en motorfietsen kunnen worden beheerd. Gebruik Node.js met
+Express en Mongoose. Structuur je code in modellen, controllers en routes. Gebruik typescript.
+Eisen
 
-Welcome to the **Node, Express and TypeScript Project Template**! This repository serves as a starter template for building Node.js applications with TypeScript. It comes pre-configured with models, controllers, routes, and bundling, so you can focus on building your application.
-
-## Features
-
-- **TypeScript**: Strongly typed language for writing robust and maintainable code.
-- **Project Structure**: Organized folder structure with models, controllers, and routes.
-- **Bundling pkgroll**: Pre-configured with a bundler for efficient builds.
-- **TSX**: For automatic server restarts an running typescript during development.
-- **Dependency Management**: Configured with npm.
-
-## Project Structure
-
-```
-├── src
-│   ├── controllers
-│   │   └── exampleController.ts
-│   ├── middleware
-│   │   └── exampleMiddleware.ts
-│   ├── models
-│   │   └── exampleModel.ts
-│   ├── routes
-│   │   └── exampleRoutes.ts
-│   └── server.ts    // Main entry point of the application
-├── dist             // Compiled output (auto-generated)
-├── package.json     // Project dependencies and scripts
-├──.gitignore        // Ignore files to github
-├── tsconfig.json    // TypeScript configuration
-└── README.md        // Project documentation
-```
-
-## Getting Started
-
-### 1. Start Development Server
-
-Run the development server with hot-reloading:
-
-```bash
-npm run dev
-```
-
-### 2. Build the Project
-
-Compile TypeScript files to JavaScript:
-
-```bash
-npm run build
-```
-
-### 3. Start the Production Server
-
-After building the project, start the server:
-
-```bash
-npm start
-```
-
-## Scripts
-
-- `dev`: Starts the development server with hot-reloading.
-- `build`: Compiles the TypeScript source code to JavaScript.
-- `start`: Starts the production server.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Happy coding! 🎉
-# opdracht_5_voertuigenverkoop_api
-# opdracht_5_voertuigenverkoop_api
+1. Models:
+   Voertuig Model:
+   Merk (String, verplicht)
+   Model (String, verplicht)
+   Bouwjaar (Number, verplicht)
+   Prijs (Number, verplicht)
+   enum: ["auto", "moto"] (String, verplicht) - enum / tuple gebruiken
+   cilinderinhoud: { type: Number, required: function () { return this.type === "moto"; } }
+   User Model:
+   naam (String, verplicht)
+   email (String, verplicht, uniek)
+   avatar (String, optioneel, standaardafbeelding indien niet meegegeven) https://
+   greekherald.com.au/wp-content/uploads/2020/07/default-avatar.png of dergelijke als default
+   wachtwoord (String, verplicht, gehashed voor veiligheid)
+   favorieten (Array, met ref naar voertuig, die de id's opslaan van voertuigen)
+2. Controllers:
+   CRUD-functionaliteit voor beide modellen:
+   Create: Voeg een nieuw voertuig toe.
+   Read: Haal alle voertuigen op, of zoek op basis van merk of bouwjaar.
+   Update: Werk voertuiggegevens bij.
+   Delete: Verwijder een voertuig uit de database.
+3. Routes:
+   POST /voertuig - Voeg een nieuw voertuig toe.
+   GET /voertuig - Haal alle voertuigen op en bij alle moto's voeg het soort rijbewijs toe aan het
+   return object. Meer info benenden.
+   GET /voertuig/:id - Haal een specifiek voertuig op.
+   PUT /voertuig/:id - Werk een specifiek voertuig bij.
+   DELETE /voertuig/:id - Verwijder een specifiek voertuig.
+4. Extra Functionaliteiten:
+   Implementeer filtering op prijsbereik (bijv. /voertuigen?
+   type=auto&minPrijs=10000&maxPrijs=20000 ).
+   Voeg paginering toe voor grote datasets.
+5. Database:
+   Gebruik MongoDB mongoose
+6. Info:
+   125cc A1 rijbewijs - tussen 126 en 500cc A2 rijbewijs - hoger dan 500cc A rijbewijs (klopt niet
+   helemaal met realiteit dus het is fictief)
+   Met de user model moet je niets doen, Hier werken we later samen op verder.
