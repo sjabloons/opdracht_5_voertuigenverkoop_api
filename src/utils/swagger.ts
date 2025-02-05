@@ -10,10 +10,15 @@ const options = {
             description: "API voor het verkopen van voertuigen",
         },
         servers: [
-            {
-                url: "http://localhost:3000/api/v1",
-                description: "Development server",
-            },
+            process.env.NODE_ENV !== "production"
+                ? {
+                      url: "http://localhost:3000/api/v1",
+                      description: "Development server",
+                  }
+                : {
+                      url: "https://opdracht-5-voertuigenverkoop-api.onrender.com",
+                      description: "Production server",
+                  },
         ],
         components: {
             schemas: {
