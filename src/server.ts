@@ -3,6 +3,9 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
+import VehicleRoutes from "./Routes/VehicleRoutes";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./utils/swagger";
 
 // Variables
 const app = express();
@@ -13,15 +16,14 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use("/api/v1/", VehicleRoutes);
+//Swagger docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Database connection
-try {
-    await mongoose.connect(process.env.MONGO_URI!);
-    console.log("Database connection OK");
-} catch (err) {
-    console.error(err);
-    process.exit(1);
-}
+//handle unknown routes
+app.all("*", (req, res) => {
+    res.status(404).json({ message: "Route not found" });
+});
 
 // Server Listening
 const connectDB = async () => {
