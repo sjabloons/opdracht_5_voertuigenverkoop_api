@@ -5,7 +5,7 @@ import {
     getVehicleById,
     putVehicleById,
     deleteVehicleById,
-} from "../Controllers/vehicleController";
+} from "../Controllers/VehicleController";
 const router = express.Router();
 /**
  * @swagger

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Vehicle } from "../models/VehicleModel";
+import { Vehicle } from "../Models/VehicleModel";
 import { checkDriversLicense } from "../utils/helpers";
 
 export const getVehicle = async (req: Request, res: Response) => {
