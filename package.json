@@ -1,7 +1,7 @@
 {
   "name": "opdracht_5_voertuigenverkoop_api",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "server.ts",
   "exports": "./dist/server.mjs",
   "type": "module",
   "scripts": {
